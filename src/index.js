@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        "origins": "*",
+        "origins": "https://master--startling-croquembouche-2f8126.netlify.app/",
         "methods": ["GET", "POST"],
     },
 });
