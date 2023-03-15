@@ -10,13 +10,13 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origins: "https://startling-croquembouche-2f8126.netlify.app/",
+        origins: "https://master--startling-croquembouche-2f8126.netlify.app/",
         methods: ["GET", "POST"],
     },
 });
 
 // app.use((req, res, next) => {
-//     let allowedOrigin = ["http://localhost:3000", "https://startling-croquembouche-2f8126.netlify.app/"]
+//     let allowedOrigin = ["http://localhost:3000", "https://master--startling-croquembouche-2f8126.netlify.app/"]
 //     if (allowedOrigin.indexOf(req.headers.origin) != -1) {
 //         res.header("Access-Control-Allow-Origin", req.headers.origin);
 //         res.setHeader("Access-Control-Allow-Credentials", true);
