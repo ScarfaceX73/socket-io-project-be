@@ -4,16 +4,24 @@ const cors = require("cors");
 const { Server } = require("socket.io");
 
 const app = express();
-app.use(cors());
 
 const server = http.createServer(app);
 
-const io = new Server(server, {
-    cors: {
-        "origins": "https://master--startling-croquembouche-2f8126.netlify.app/",
-        "methods": ["GET", "POST"],
-    },
-});
+app.use((req, res, next) => {
+    let allowedOrigin = ["http://localhost:3000", "https://master--startling-croquembouche-2f8126.netlify.app"]
+    if (allowedOrigin.indexOf(req.headers.origin) != -1) {
+        res.header("Access-Control-Allow-Origin", req.headers.origin);
+        res.setHeader("Access-Control-Allow-Credentials", true);
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Set-Cookie");
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    }
+
+    console.log(allowedOrigin.indexOf(req.headers.origin));
+
+    next();
+})
+
+const io = new Server(server);
 
 io.on("connection", (socket) => {
     console.log(`User connected: ${socket.id}`);
